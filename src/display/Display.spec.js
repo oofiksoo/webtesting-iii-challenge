@@ -8,7 +8,7 @@ import "@testing-library/jest-dom/extend-expect";
 test("renders without crashing", () => {
   render(<Display />);
 });
-//renders unlocks
+//renders unlock
 test("renders unlocked", () => {
   const { getByText } = render(<Display locked={false} />);
 
@@ -43,4 +43,18 @@ test("red-led toHaveclass locked or closed", () => {
   expect(lock).toHaveClass("red-led");
 
   expect(close).toHaveClass("red-led");
+});
+
+///unlocked/open green-led
+
+test("green-led toHaveclass unlocked or open", () => {
+  const { getByText } = render(<Display closed={false} locked={false} />);
+
+  const lock = getByText(/unlocked/i);
+
+  const close = getByText(/open/i);
+
+  expect(lock).toHaveClass("green-led");
+
+  expect(close).toHaveClass("green-led");
 });
